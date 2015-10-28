@@ -13,3 +13,4 @@ for i1 in [" ","_"]:
 							print ("{0}{1}{2}".format(i3,i4,i5))
 							print ("{0}{1}{2}".format(i6,i7,i8))
 							i+=1
+							

@@ -45,51 +45,45 @@ master = [
 	{"string":" _ |_| _|","number":9},
 ]
 
-def search(master, s):
+def pipes_underscores_to_account_number(s):
 	d = "?"
 	for item in master:
 		if s == item["string"]:
-			return item["number"]
+			return str(item["number"])
 	return d
 
-def check(account_num):
-	if account_num.find("?") == -1:
+def check(account_num_converted):
+	if account_num_converted.find("?") == -1:
 		check_sum = 0
-		for index, digit in enumerate(account_num):
+		for index, digit in enumerate(account_num_converted):
 			check_sum += (9-index) * int(digit)
 		if check_sum % 11 == 0 : return ""
 		else: return "ERR"
 	else: return "ILL"
 
 output_file = open(config[CONFIG_NUM]["output"],"r")
+#for each entry. conversion to digits then account number then validation.
+#output ie account number and status if needed are printed.
 for num in acc_nums:
-	account_num = ""
-	for digit in num:
-		s = ""
-		for line in digit:
-			s += line
-		account_num += str(search(master, s))
 
-#check ambivalence
-for num in acc_nums:
-	account_num = ""
-	
+	account_num_converted = ""
 	for digit in num:
 		s = ""
 		for line in digit:
 			s += line
-		account_num += str(search(master, s))
+		account_num_converted += pipes_underscores_to_account_number(s)
+
 	expected = output_file.readline().rstrip("\n")
 	if config[CONFIG_NUM]["level"]==1:
-		output = account_num
+		output = account_num_converted
 		assert output == expected
 		print (output)
 	if config[CONFIG_NUM]["level"]==3:
-		output = account_num
+		output = account_num_converted
 		#analysis of check sum and illegible digits
-		check_val = check(account_num)
+		check_val = check(account_num_converted)
 		if check_val:
 			output += check_val.rjust(4, " ")
 		assert output == expected
 		print (output)
-	if config[CONFIG_NUM]["level"]==4:
+	#if config[CONFIG_NUM]["level"]==4:
