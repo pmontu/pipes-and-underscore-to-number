@@ -1,5 +1,6 @@
 from digit import ambivances, valid
 
+#level represents user story 1 or 3. 4 is not complete. 2 is not valid.
 config = [
 	{"input":"input01.txt", "output":"output01.txt", "level":1},
 	{"input":"input02.txt", "output":"output02.txt", "level":3},
