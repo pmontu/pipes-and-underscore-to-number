@@ -1,7 +1,9 @@
+from digit import ambivances, valid
+
 config = [
 	{"input":"input01.txt", "output":"output01.txt", "level":1},
 	{"input":"input02.txt", "output":"output02.txt", "level":3},
-	{"input":"input03.txt", "output":"output03.txt", "level":4},
+	#{"input":"input03.txt", "output":"output03.txt", "level":4},
 ]
 
 for setting in config:
@@ -47,7 +49,7 @@ for setting in config:
 		{"string":" _ |_| _|","number":9},
 	]
 
-	def pipes_underscores_to_account_number(s):
+	def pipes_underscores_to_a_string_digit(s):
 		d = "?"
 		for item in master:
 			if s == item["string"]:
@@ -70,10 +72,10 @@ for setting in config:
 
 		account_num_converted = ""
 		for digit in num:
-			s = ""
+			pipes_and_underscores_of_a_digit = ""
 			for line in digit:
-				s += line
-			account_num_converted += pipes_underscores_to_account_number(s)
+				pipes_and_underscores_of_a_digit += line
+			account_num_converted += pipes_underscores_to_a_string_digit(pipes_and_underscores_of_a_digit)
 
 		expected = output_file.readline().rstrip("\n")
 		if setting["level"]==1:
